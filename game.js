@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
-    activateButtons()
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', event => {
+            const humanWeapon = event.target.innerText.toLowerCase();
+            playFirstRound(humanWeapon)
+        });
+    })
 }
 
 
@@ -59,13 +65,3 @@ function compMove() {
         return 'scissors';
     }
 };
-
-function activateButtons() {
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', event => {
-            const humanWeapon = event.target.innerText.toLowerCase();
-            playFirstRound(humanWeapon)
-        });
-    })
-}
