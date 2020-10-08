@@ -1,16 +1,19 @@
-playFirstRound()
+document.addEventListener('DOMContentLoaded', init)
 
-function playFirstRound() {
+function init() {
+    activateButtons()
+}
+
+
+function playFirstRound(humanWeapon) {
     let result = '';
     const draw = 'It is a draw';
     const win = 'Human wins';
     const loose = 'Artificial Inteligence wins';
 
-    const humanWeapon = humanMove();
-    console.log("playFirstRound -> humanWeapon", humanWeapon)
     const compWeapon = compMove();
     console.log("playFirstRound -> compWeapon", compWeapon)
-    
+
 
     if (humanWeapon === 'rock') {
         if (compWeapon === 'rock') {
@@ -20,7 +23,6 @@ function playFirstRound() {
         } else {
             result = win;
         }
-        console.log(result);
     };
 
     if (humanWeapon === 'paper') {
@@ -29,7 +31,7 @@ function playFirstRound() {
         } else if (compWeapon === 'scissors') {
             result = loose;
         } else {
-            result = win
+            result = win;
         }
     };
 
@@ -42,6 +44,8 @@ function playFirstRound() {
             result = win
         }
     };
+    console.log(result);
+
 }
 
 function compMove() {
@@ -56,12 +60,12 @@ function compMove() {
     }
 };
 
-function humanMove() {
-    const playerSelection = prompt('Rock, paper or scissors?').toLowerCase();
-    return playerSelection;
-    console.log("humanMove -> playerSelection", playerSelection)
-
+function activateButtons() {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', event => {
+            const humanWeapon = event.target.innerText.toLowerCase();
+            playFirstRound(humanWeapon)
+        });
+    })
 }
-
-
-
